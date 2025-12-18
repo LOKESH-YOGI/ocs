@@ -118,7 +118,7 @@ const initialUsers: User[] = [
     id: 'citizen-001',
     email: 'citizen@example.com',
     password: 'citizen123',
-    fullName: 'Sita Sharma',
+    fullName: 'Lokesh Yogi',
     phone: '9812345678',
     role: 'citizen',
     createdAt: '2024-01-15T00:00:00Z',
