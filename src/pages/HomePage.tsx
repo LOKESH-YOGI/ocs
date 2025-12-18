@@ -8,7 +8,6 @@ import {
   Headphones, 
   ArrowRight,
   CheckCircle2,
-  Users,
   FileText
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -42,43 +41,35 @@ export default function HomePage() {
     },
   ];
 
-  const stats = [
-    { value: '50K+', label: 'Certificates Issued' },
-    { value: '75', label: 'Districts Covered' },
-    { value: '99%', label: 'Satisfaction Rate' },
-    { value: '24/7', label: 'Support Available' },
-  ];
-
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden hero-gradient py-20 lg:py-32">
-        <div className="absolute inset-0 pattern-dots opacity-10" />
-        <div className="container relative z-10">
-          <div className="mx-auto max-w-4xl text-center">
-            <h1 className="animate-fade-up text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-primary-foreground leading-tight mb-6">
+      <section className="bg-primary py-12 lg:py-16">
+        <div className="container">
+          <div className="max-w-3xl">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-primary-foreground leading-tight mb-4">
               {t('home.title')}
             </h1>
-            <p className="animate-fade-up text-lg sm:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto" style={{ animationDelay: '0.1s' }}>
+            <p className="text-base text-primary-foreground/90 mb-6">
               {t('home.description')}
             </p>
-            <div className="animate-fade-up flex flex-col sm:flex-row gap-4 justify-center" style={{ animationDelay: '0.2s' }}>
+            <div className="flex flex-wrap gap-3">
               {isAuthenticated ? (
-                <Button size="xl" variant="hero" asChild>
+                <Button size="lg" variant="secondary" asChild>
                   <Link to={isAdmin ? '/admin/dashboard' : '/citizen/dashboard'}>
                     {t('nav.dashboard')}
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               ) : (
                 <>
-                  <Button size="xl" variant="hero" asChild>
+                  <Button size="lg" variant="secondary" asChild>
                     <Link to="/register">
                       {t('home.applyNow')}
-                      <ArrowRight className="ml-2 h-5 w-5" />
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
-                  <Button size="xl" variant="heroOutline" asChild>
+                  <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10" asChild>
                     <Link to="/track">
                       {t('home.trackApplication')}
                     </Link>
@@ -88,67 +79,64 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        
-        {/* Decorative elements */}
-        <div className="absolute -bottom-1 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* Services Section */}
-      <section className="py-16 lg:py-24">
+      <section className="py-10 lg:py-14">
         <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4">
+          <div className="mb-8">
+            <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
               {t('nav.services')}
             </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
+            <p className="text-muted-foreground">
               {t('home.subtitle')}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-4 max-w-3xl">
             {/* Birth Certificate Card */}
             <Link
               to={isAuthenticated ? '/citizen/apply/birth' : '/register'}
-              className="group relative overflow-hidden rounded-2xl bg-card p-8 shadow-card hover:shadow-elevated transition-all duration-300 border border-border hover:border-primary/30"
+              className="block bg-card p-6 border border-border rounded hover:border-primary transition-colors"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500" />
-              <div className="relative">
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-colors duration-300">
-                  <Baby className="h-7 w-7" />
+              <div className="flex items-start gap-4">
+                <div className="p-2 bg-accent rounded">
+                  <Baby className="h-6 w-6 text-accent-foreground" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                  {t('home.birthCertificate')}
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  {t('home.birthCertificateDesc')}
-                </p>
-                <span className="inline-flex items-center text-sm font-semibold text-primary group-hover:translate-x-1 transition-transform">
-                  {t('home.applyNow')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </span>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-foreground mb-1">
+                    {t('home.birthCertificate')}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    {t('home.birthCertificateDesc')}
+                  </p>
+                  <span className="text-sm text-primary font-medium">
+                    {t('home.applyNow')} →
+                  </span>
+                </div>
               </div>
             </Link>
 
             {/* Death Certificate Card */}
             <Link
               to={isAuthenticated ? '/citizen/apply/death' : '/register'}
-              className="group relative overflow-hidden rounded-2xl bg-card p-8 shadow-card hover:shadow-elevated transition-all duration-300 border border-border hover:border-primary/30"
+              className="block bg-card p-6 border border-border rounded hover:border-primary transition-colors"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500" />
-              <div className="relative">
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                  <FileCheck className="h-7 w-7" />
+              <div className="flex items-start gap-4">
+                <div className="p-2 bg-accent rounded">
+                  <FileCheck className="h-6 w-6 text-accent-foreground" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                  {t('home.deathCertificate')}
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  {t('home.deathCertificateDesc')}
-                </p>
-                <span className="inline-flex items-center text-sm font-semibold text-primary group-hover:translate-x-1 transition-transform">
-                  {t('home.applyNow')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </span>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-foreground mb-1">
+                    {t('home.deathCertificate')}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    {t('home.deathCertificateDesc')}
+                  </p>
+                  <span className="text-sm text-primary font-medium">
+                    {t('home.applyNow')} →
+                  </span>
+                </div>
               </div>
             </Link>
           </div>
@@ -156,19 +144,21 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 lg:py-24 bg-muted/50">
+      <section className="py-10 lg:py-14 bg-muted/50">
         <div className="container">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
+          <h2 className="text-xl font-semibold text-foreground mb-6">
+            Key Features
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {features.map((feature) => (
               <div
                 key={feature.title}
-                className="bg-card rounded-xl p-6 shadow-soft border border-border hover:shadow-card transition-shadow duration-300"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="bg-card border border-border rounded p-4"
               >
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg hero-gradient text-primary-foreground">
-                  <feature.icon className="h-6 w-6" />
+                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded bg-primary text-primary-foreground">
+                  <feature.icon className="h-5 w-5" />
                 </div>
-                <h3 className="font-bold text-foreground mb-2">{feature.title}</h3>
+                <h3 className="font-medium text-foreground mb-1">{feature.title}</h3>
                 <p className="text-sm text-muted-foreground">{feature.description}</p>
               </div>
             ))}
@@ -176,49 +166,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 lg:py-24">
-        <div className="container">
-          <div className="rounded-2xl hero-gradient p-8 lg:p-12">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-secondary mb-2">{stat.value}</div>
-                  <div className="text-sm text-primary-foreground/80">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-muted/50">
+      <section className="py-10 lg:py-14">
         <div className="container">
-          <div className="text-center max-w-2xl mx-auto">
-            <Users className="h-12 w-12 text-primary mx-auto mb-6" />
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-              Ready to Get Started?
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              Register now to apply for birth and death certificates online. Track your application status anytime, anywhere.
-            </p>
-            {!isAuthenticated && (
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" asChild>
-                  <Link to="/register">
-                    <FileText className="mr-2 h-5 w-5" />
-                    {t('nav.citizenPortal')}
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link to="/admin/login">
-                    <Shield className="mr-2 h-5 w-5" />
-                    {t('nav.adminPortal')}
-                  </Link>
-                </Button>
-              </div>
-            )}
+          <div className="bg-primary/5 border border-primary/20 rounded p-6 lg:p-8">
+            <div className="max-w-xl">
+              <h2 className="text-xl font-semibold text-foreground mb-2">
+                Ready to Get Started?
+              </h2>
+              <p className="text-muted-foreground mb-4">
+                Register now to apply for birth and death certificates online. Track your application status anytime, anywhere.
+              </p>
+              {!isAuthenticated && (
+                <div className="flex flex-wrap gap-3">
+                  <Button asChild>
+                    <Link to="/register">
+                      <FileText className="mr-2 h-4 w-4" />
+                      {t('nav.citizenPortal')}
+                    </Link>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link to="/admin/login">
+                      <Shield className="mr-2 h-4 w-4" />
+                      {t('nav.adminPortal')}
+                    </Link>
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
