@@ -42,7 +42,7 @@ export function Header() {
             <span className="text-sm font-bold text-primary-foreground">BD</span>
           </div>
           <div className="hidden sm:block">
-            <h1 className="text-base font-semibold leading-tight text-foreground">BDCS</h1>
+            <h1 className="text-base font-semibold leading-tight text-foreground">DBCS_Lokesh</h1>
             <p className="text-xs text-muted-foreground leading-tight">e-Governance Portal</p>
           </div>
         </Link>
